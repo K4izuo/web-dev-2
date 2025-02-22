@@ -25,43 +25,40 @@
 }
 
 /* Table Styles */
+.table-cell-align {
+  vertical-align: middle !important;
+  padding: 1rem !important;
+}
+
+/* Sticky header */
 .sticky-header {
   position: sticky;
   top: 0;
-  background: #f8f9fa;
+  background: #fff;
   z-index: 10;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.table-cell-align {
-  vertical-align: middle !important;
-  padding: 1rem 0.75rem !important;
-}
-
-/* Action Buttons */
+/* Actions column alignment */
 .actions-cell {
   width: 120px;
-  padding: 0.75rem 1.25rem !important;
+  text-align: right !important;
+  padding-right: 1.5rem !important;
 }
 
+/* Action buttons container */
 .action-buttons {
-  display: inline-flex !important;
-  align-items: center;
-  gap: 6px;
+  display: flex;
   justify-content: flex-end;
-  height: 32px;
+  gap: 0.5rem;
 }
 
+/* Individual action button */
 .action-button {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: inline-flex !important;
+  padding: 0.25rem 0.5rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-  border-radius: 4px;
 }
 
 .action-button i {
