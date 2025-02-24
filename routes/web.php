@@ -12,3 +12,5 @@ Route::get('/', [StudentsController::class, 'index'])->name('std.viewAll');
 
 //Create New Students
 Route::post('/create-new', [StudentsController::class, 'createNewSTD'])->name('std.create');
+Route::put('/update/{id}', [StudentsController::class, 'updateSTD'])->name('std.update');
+Route::delete('/delete/{id}', [StudentsController::class, 'deleteSTD'])->name('std.delete');

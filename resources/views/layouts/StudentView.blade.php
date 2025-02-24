@@ -173,7 +173,7 @@
                                 aria-label="Close"></button>
                         </div>
                         <div class="modal-body px-4 py-4">
-                            <form method="POST" action="" class="needs-validation" novalidate>
+                            <form action="{{ route('std.update', $student->id) }}" method="POST" class="needs-validation" novalidate>
                                 @csrf
                                 @method('PUT')
                                 <div class="row g-4">
@@ -261,7 +261,7 @@
                             <p class="small text-muted mb-0">This action cannot be undone.</p>
                         </div>
                         <div class="modal-footer border-top-0">
-                            <form action="" method="POST">
+                            <form action="{{ route('std.delete', $student->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="d-flex gap-2">
