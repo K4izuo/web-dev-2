@@ -1,16 +1,16 @@
 @extends('layouts.base')
-@section('title', 'Login')
+@section('title', 'Register')
 
-@if (Session('success'))
-    <span class="alert alert-success">
-        {{ session('success') }}
-    </span>
+@if (session('success'))
+    <div class="alert alert-success" id="success">
+        {{ Session::get('success') }}
+    </div>
 @endif
 
-@if (Session('fail'))
-    <span class="alert alert-danger">
-        {{ session('fail') }}
-    </span>
+@if (session('fail'))
+    <div class="alert alert-danger" id="fail">
+        {{ Session::get('fail') }}
+    </div>
 @endif
 
 @section('content')
@@ -24,11 +24,15 @@
             </div>
             <div class="login-right">
                 <div class="login-form-container">
-                    <h1>LOGIN</h1>
+                    <h1>Register</h1>
                     <p class="welcome-text">We are happy to have you back.</p>
 
-                    <form class="login-form" method="POST" action="{{ route('auth.userLogin') }}">
+                    <form class="login-form" method="POST" action="{{ route('auth.userRegister') }}">
                         @csrf
+                        <div class="form-group">
+                            <input type="text" class="form-input" id="name" name="name"
+                                placeholder="Full name" required>
+                        </div>
                         <div class="form-group">
                             <input type="email" class="form-input" id="email" name="email"
                                 placeholder="Email address" required>
@@ -50,7 +54,7 @@
                         <button type="submit" class="login-button">Login</button>
 
                         <p class="signup-text">
-                            Don't have account? <a href="{{ route('auth.register') }}" class="signup-link">Sign Up</a>
+                            Already have an account? <a href="{{ route('auth.login') }}" class="signup-link">Login now!</a>
                         </p>
                     </form>
                 </div>

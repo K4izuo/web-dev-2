@@ -13,6 +13,9 @@ class AuthController extends Controller
 {
   public function login()
   {
+    if (Session::has('loginId')) {
+      return redirect()->route('std.viewAll');
+    }
     return view('pages.admin_form');
   }
 
@@ -34,13 +37,41 @@ class AuthController extends Controller
     }
   }
 
-  public function userLogout()
+  public function register()
   {
     if (Session::has('loginId')) {
-      Session::pull('loginId');
-      return redirect()->route('auth.index')->with('success', 'Logout successfully');
-    } else {
-      return redirect()->route('auth.index')->with('error', 'You are not logged in');
+      return redirect()->route('std.viewAll');
     }
+    return view('pages.admin_register');
+  }
+
+  public function userRegister(Request $request)
+  {
+    $request->validate([
+      'name' => 'required',
+      'email' => 'required',
+      'password' => 'required',
+    ]);
+
+    $input['name'] = $request->name;
+    $input['email'] = $request->email;
+    $input['password'] = bcrypt($request->password);
+    User::create($input);
+
+    return redirect()->route('auth.login')->with('success', 'Registration successful');
+  }
+
+  public function userLogout()
+  {
+    Auth::logout(); // Properly log out the authenticated user
+
+    if (Session::has('loginId')) {
+      Session::pull('loginId');
+    }
+
+    Session::invalidate(); // Invalidate the session
+    Session::regenerateToken(); // Regenerate CSRF token for security
+
+    return redirect()->route('auth.login')->with('success', 'Logout successfully');
   }
 }
